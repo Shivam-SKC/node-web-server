@@ -4,6 +4,7 @@ const { text } = require('express');
 const fs = require('fs');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -32,9 +33,9 @@ app.get('/', (req, res) => {
     res.send('Hello express');
 })
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-})
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// })
 
 app.get('/index', (req, res) => {
     res.render('index.hbs',
@@ -50,4 +51,6 @@ app.get('/about', (req, res) => {
         })
 })
 
-app.listen(3000);
+app.listen(port, () => {
+    console.log(`server is on the port ${port}`);
+});
